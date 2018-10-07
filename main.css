@@ -1,0 +1,31 @@
+hr {
+    border-color: purple;
+    background-color: purple;
+    border-style: solid;
+    height: 2px;
+    border: 0;
+    border-top: 1px solid;
+}
+
+.Heading {
+    padding-left: 1em;
+    padding-top: 2em;
+}
+
+h3 {
+    padding-left: 1em;
+}
+
+.Content {
+    -webkit-padding-start: 2em;
+}
+
+.responsive {
+    max-width: 400px;
+    height: auto;
+}
+
+.responsivetall {
+    max-height: 600px;
+    width: auto;
+}
