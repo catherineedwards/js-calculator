@@ -24,34 +24,57 @@ var total = 0;
 var temp = "";
 
 function calc(event) {
-  var val = parseFloat(this.innerText);
+  var buttonText = this.innerText;
+  var val = parseFloat(buttonText);
 
   if (isNaN(val)) {
-    var buttonText = this.innerText;
-  } else if (buttonText === "AC") {
-    entries = [];
-    temp = "";
-    total = 0;
-    document.getElementById("answer").val("");
-  } else if (buttonText === "CE") {
-    // add Clear Entry functionality
-    temp = "";
-    document.getElementById("answer").val("");
-  } else if (buttonText === "X") {
-    // add multiplication operand conversion
-    entries.push(temp);
-    entries.push("*");
-    temp = [];
-  } else if (buttonText === "÷") {
-    // add division operand conversion
-    entries.push(temp);
-    entries.push("/");
-    temp = [];
+    // test all non-number buttons
+    if (buttonText === "AC") {
+      // add All Clear functionality
+      entries = [];
+      temp = "";
+      total = 0;
+      document.getElementById("answer").val("");
+    } else if (buttonText === "CE") {
+      // add Clear Entry functionality
+      temp = "";
+      document.getElementById("answer").val("");
+    } else if (buttonText === "X") {
+      // add multiplication operand conversion
+      entries.push(temp);
+      entries.push("*");
+      temp = "";
+    } else if (buttonText === "÷") {
+      // add division operand conversion
+      entries.push(temp);
+      entries.push("/");
+      temp = "";
+    } else if (buttonText === "+") {
+      entries.push(temp);
+      entries.push("+");
+      temp = "";
+    } else if (buttonText === ".") {
+      entries.push(temp);
+      entries.push(".");
+      temp = "";
+    } else if (buttonText === "=") {
+      entries.push(temp);
+      entries.push("=");
+      temp = "";
+    } else if (buttonText === "%") {
+      entries.push(temp);
+      entries.push("%");
+      temp = "";
+    }
   } else {
-    //it is a number, add to answer text
+    // val is a number, add to answer text
     temp += val;
     document.getElementById("answer").value = temp;
   }
+
+  // I will need to push the buttonText to symbol
+  // I will need to walk through what is happening in these functions to see if the appropriate tests are being run correctly
+
 
   // set the result of the calculation
   var result = Number(entries[0]);
