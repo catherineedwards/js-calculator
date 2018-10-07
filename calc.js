@@ -19,10 +19,19 @@ document
       temp = "";
       total = 0;
       document.getElementById("answer").val("");
-
-      // add Clear Entry functionality
     } else if (val === "CE") {
+      // add Clear Entry functionality
       temp = "";
       document.getElementById("answer").val("");
+    } else if (val === "x") {
+      // add multiplication operand conversion
+      entries.push(temp);
+      entries.push("*");
+      temp = [];
+    } else if (val === "÷") {
+      // add division operand conversion
+      entries.push(temp);
+      entries.push("/");
+      temp = [];
     }
   });
