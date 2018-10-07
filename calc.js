@@ -51,6 +51,13 @@ document
             result /= nextNum
         }
         
+        //if the number is less than zero, turn result into an absolute number, and show that it's a negative number with '-'
+
+        if (result < 0) {
+            result = Math.abs(result) + '-';
+        }
+        
+
         i++;
     }
   });
