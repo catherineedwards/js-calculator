@@ -34,4 +34,23 @@ document
       entries.push("/");
       temp = [];
     }
+    // set the result of the calculation
+    var result = Number(entries[0]);
+    for (let i = 0; i <= entries.length; i++) {
+        var nextNum = Number(entries[i+1]);
+        var symbol = entries[i];
+       
+        // test the symbol against the stored number to perform the calculation
+        if (symbol === '+') { 
+            result += nextNum
+        } else if (symbol === '-') {
+            result -= nextNum
+        } else if (symbol === '*') {
+            result *= nextNum
+        } else if (symbol === '/') {
+            result /= nextNum
+        }
+        
+        i++;
+    }
   });
