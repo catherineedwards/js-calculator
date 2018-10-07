@@ -24,39 +24,35 @@ var total = 0;
 var temp = "";
 
 function calc(event) {
-  //we will need to push all innerText to val
-  console.log(this.innerText);
-  //  document.getElementById("answer").value = this.innerText;
-
-  // add buttons functionality
-
   var val = parseFloat(this.innerText);
 
-  if ((val.innerText = !NaN || ".")) {
-    temp += val;
-    document.getElementById("answer").value = temp;
-
-    // add All Clear functionality
-  } else if (val === "AC") {
+  if (isNaN(val)) {
+    var buttonText = this.innerText;
+  } else if (buttonText === "AC") {
     entries = [];
     temp = "";
     total = 0;
     document.getElementById("answer").val("");
-  } else if (val === "CE") {
+  } else if (buttonText === "CE") {
     // add Clear Entry functionality
     temp = "";
     document.getElementById("answer").val("");
-  } else if (val === "x") {
+  } else if (buttonText === "X") {
     // add multiplication operand conversion
     entries.push(temp);
     entries.push("*");
     temp = [];
-  } else if (val === "÷") {
+  } else if (buttonText === "÷") {
     // add division operand conversion
     entries.push(temp);
     entries.push("/");
     temp = [];
+  } else {
+    //it is a number, add to answer text
+    temp += val;
+    document.getElementById("answer").value = temp;
   }
+
   // set the result of the calculation
   var result = Number(entries[0]);
   for (let i = 0; i <= entries.length; i++) {
