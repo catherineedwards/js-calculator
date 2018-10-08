@@ -62,7 +62,7 @@ function calc(event) {
     } else if (buttonText === ".") {
       entries.push(".");
     } else if (buttonText === "=") {
-      
+      entries.push("=");
     } else if (buttonText === "%") {
       entries.push("%");
     }
@@ -74,25 +74,25 @@ function calc(event) {
   var newAnswer = "";
 
   for (let i = 0; i < entries.length; i++) {
-     newAnswer += entries[i];
+    newAnswer += entries[i];
 
-    var result = Number(entries[0]);
-    var nextNum = Number(entries[i + 1]);
-    // test the symbol against the stored number to perform the calculation
-    // acknowledging that % and . do nothing for now
-    if (buttonText === "+") {
-      result += nextNum;
-    } else if (buttonText === "-") {
-      result -= nextNum;
-    } else if (buttonText === "*") {
-      result *= nextNum;
-    } else if (buttonText === "/") {
-      result /= nextNum;
+    if (entries[i] === "=") {
+      var numbers = [];
+      var tempString = "";
+      for (let j = 0; j < i; j++){
+        if (!isNaN(parseFloat(entries[j])) || entries[j] === ".") {
+          tempString += entries[j];
+        } else {
+          numbers.push(parseFloat(tempString));
+          tempString = "";
+        }
+      }
+
+      
     }
   }
-
   document.getElementById("answer").value = newAnswer;
-}
+} /*
 //if the number is less than zero, turn result into an absolute number, and show that it's a negative number with '-'
 if (result < 0) {
   result = Math.abs(result) + "-";
@@ -104,3 +104,4 @@ if (result < 0) {
 // push result to answer via val
 document.getElementById("answer").value = result;
 entries = [];
+*/
