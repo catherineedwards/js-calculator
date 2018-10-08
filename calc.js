@@ -1,3 +1,7 @@
+// This calculator is not recommended for official use
+// Please do not use if you value accuracy
+// YMMV
+
 window.onload = function() {
   //add event listeners for all buttons
   document.getElementById("one").addEventListener("click", calc);
@@ -21,39 +25,36 @@ window.onload = function() {
   document.getElementById("clearEntry").addEventListener("click", calc);
 };
 
+// initialise our variables
 var entries = [];
-var total = 0;
-var result = 0;
 
+// start the calc function
 function calc(event) {
+  // take the text from the button, and turn it into a number
   var buttonText = this.innerText;
-  var val = parseFloat(buttonText);
-  console.log(entries);
-  console.log(total);
-  console.log(val);
-  console.log(result);
 
-  if (isNaN(val)) {
-    // test all non-number buttons
+  if (isNaN(parseFloat(buttonText))) {
+    // test for all non-number buttons
     if (buttonText === "AC") {
       // add All Clear functionality
       entries = [];
-      total = 0;
       document.getElementById("answer").value = "";
     } else if (buttonText === "CE") {
       // add Clear Entry functionality
       while (entries.length > 0) {
+        // remove the last entry from the entries array
         var entry = entries.pop();
         if (!Number.isInteger(entry) && entry !== ".") {
+          // checking for strings except for the decimal place
+          // pushing the operand back onto the entries
           entries.push(entry);
           break;
         }
       }
     } else if (buttonText === "X") {
-      // add multiplication operand conversion
+      // handling all of the operands
       entries.push("*");
     } else if (buttonText === "÷") {
-      // add division operand conversion
       entries.push("/");
     } else if (buttonText === "+") {
       entries.push("+");
@@ -68,61 +69,75 @@ function calc(event) {
     }
   } else {
     // val is a number, add to answer text
-    entries.push(val);
+    entries.push(parseFloat(buttonText));
   }
 
   var newAnswer = "";
 
   for (let i = 0; i < entries.length; i++) {
+    // check through the entries and add them to newAnswer as a string
     newAnswer += entries[i];
 
     if (entries[i] === "=") {
+      // if the user has clicked the equals sign
+      // the purpose of this section is to combine numbers and decimal points together to form a float
+      // create new arrays for numbers and operands
+      // create a temporary string field
+      // we push the number preceding the operand to numbers array
+      // we push the number following the operand to tempString
       var numbers = [];
       var operands = [];
       var tempString = "";
-      for (let j = 0; j <= i; j++){
+      for (let j = 0; j <= i; j++) {
         if (!isNaN(parseFloat(entries[j])) || entries[j] === ".") {
+          // if it's a number or a decimal, push it to string
           tempString += entries[j];
         } else {
+          // convert our tempString to our float, and add it to our numbers array
           numbers.push(parseFloat(tempString));
+          // if it's an operand, push it to operands
           operands.push(entries[j]);
+          // clear tempString so we can continue adding numbers to the equation
           tempString = "";
         }
       }
+      // create a tempAnswer where we will store our known calculations
       var tempAnswer = 0;
+      // check what operand is being used, and perform the operation based on operand
+      // taking into account the presence of any operations completed prior
       for (let k = 0; k < operands.length - 1; k++) {
         if (operands[k] === "*") {
           if (k < 1) {
-            tempAnswer = numbers[k] * numbers[k+1];
+            tempAnswer = numbers[k] * numbers[k + 1];
           } else {
-            tempAnswer = tempAnswer * numbers[k+1];
+            tempAnswer = tempAnswer * numbers[k + 1];
           }
         } else if (operands[k] === "/") {
-          
+          if (k < 1) {
+            tempAnswer = numbers[k] / numbers[k + 1];
+          } else {
+            tempAnswer = tempAnswer / numbers[k + 1];
+          }
         } else if (operands[k] === "+") {
           if (k < 1) {
-            tempAnswer = numbers[k] + numbers[k+1];
+            tempAnswer = numbers[k] + numbers[k + 1];
           } else {
-            tempAnswer = tempAnswer + numbers[k+1];
+            tempAnswer = tempAnswer + numbers[k + 1];
           }
         } else if (operands[k] === "-") {
-        
+          if (k < 1) {
+            tempAnswer = numbers[k] - numbers[k + 1];
+          } else {
+            tempAnswer = tempAnswer - numbers[k + 1];
+          }
         }
       }
+      // initialise newAnswer as the output of tempAnswer
       newAnswer = tempAnswer;
+      // store newAnswer in entries should the user want to continue calculations
+      entries = [newAnswer];
     }
   }
+  // push current answer to answer field on index page
   document.getElementById("answer").value = newAnswer;
-} /*
-//if the number is less than zero, turn result into an absolute number, and show that it's a negative number with '-'
-if (result < 0) {
-  result = Math.abs(result) + "-";
-} else {
-  // if any a number button is pushed after the calculation
-  entries.push(val);
 }
-
-// push result to answer via val
-document.getElementById("answer").value = result;
-entries = [];
-*/
