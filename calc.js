@@ -1,23 +1,24 @@
 window.onload = function() {
   //add event listeners for all buttons
-  document.getElementById("1").addEventListener("click", calc);
-  document.getElementById("2").addEventListener("click", calc);
-  document.getElementById("3").addEventListener("click", calc);
-  document.getElementById("4").addEventListener("click", calc);
-  document.getElementById("5").addEventListener("click", calc);
-  document.getElementById("6").addEventListener("click", calc);
-  document.getElementById("7").addEventListener("click", calc);
-  document.getElementById("8").addEventListener("click", calc);
-  document.getElementById("9").addEventListener("click", calc);
-  document.getElementById("0").addEventListener("click", calc);
-  document.getElementById("AC").addEventListener("click", calc);
-  document.getElementById("CE").addEventListener("click", calc);
+  document.getElementById("one").addEventListener("click", calc);
+  document.getElementById("two").addEventListener("click", calc);
+  document.getElementById("three").addEventListener("click", calc);
+  document.getElementById("four").addEventListener("click", calc);
+  document.getElementById("five").addEventListener("click", calc);
+  document.getElementById("six").addEventListener("click", calc);
+  document.getElementById("seven").addEventListener("click", calc);
+  document.getElementById("eight").addEventListener("click", calc);
+  document.getElementById("nine").addEventListener("click", calc);
+  document.getElementById("zero").addEventListener("click", calc);
   document.getElementById("percent").addEventListener("click", calc);
   document.getElementById("divide").addEventListener("click", calc);
-  document.getElementById("x").addEventListener("click", calc);
-  document.getElementById("-").addEventListener("click", calc);
-  document.getElementById("=").addEventListener("click", calc);
-  document.getElementById(".").addEventListener("click", calc);
+  document.getElementById("multiply").addEventListener("click", calc);
+  document.getElementById("minus").addEventListener("click", calc);
+  document.getElementById("equals").addEventListener("click", calc);
+  document.getElementById("plus").addEventListener("click", calc);
+  document.getElementById("decimalPoint").addEventListener("click", calc);
+  document.getElementById("allClearButton").addEventListener("click", calc);
+  document.getElementById("clearEntry").addEventListener("click", calc);
 };
 var entries = [];
 var total = 0;
@@ -26,19 +27,21 @@ var temp = "";
 function calc(event) {
   var buttonText = this.innerText;
   var val = parseFloat(buttonText);
-
+  console.log(this.innerText);
   if (isNaN(val)) {
     // test all non-number buttons
+    
     if (buttonText === "AC") {
       // add All Clear functionality
       entries = [];
       temp = "";
       total = 0;
-      document.getElementById("answer").innerText(""); // need to fix this
+      
+      document.getElementById("answer").innerText = temp; // need to fix this
     } else if (buttonText === "CE") {
       // add Clear Entry functionality
       temp = "";
-      document.getElementById("answer").innerText(""); // need to fix this
+      document.getElementById("answer").innerText = temp; // need to fix this
     } else if (buttonText === "X") {
       // add multiplication operand conversion
       entries.push(temp);
