@@ -20,6 +20,7 @@ window.onload = function() {
   document.getElementById("allClearButton").addEventListener("click", calc);
   document.getElementById("clearEntry").addEventListener("click", calc);
 };
+
 var entries = [];
 var total = 0;
 var temp = "";
@@ -27,21 +28,20 @@ var temp = "";
 function calc(event) {
   var buttonText = this.innerText;
   var val = parseFloat(buttonText);
-  console.log(this.innerText);
+
   if (isNaN(val)) {
     // test all non-number buttons
-    
     if (buttonText === "AC") {
       // add All Clear functionality
-      entries = [];
+          entries = [];
       temp = "";
       total = 0;
       
-      document.getElementById("answer").innerText = temp; // need to fix this
+      document.getElementById("answer").value = temp;
     } else if (buttonText === "CE") {
       // add Clear Entry functionality
-      temp = "";
-      document.getElementById("answer").innerText = temp; // need to fix this
+       temp = "";
+      document.getElementById("answer").value = temp;
     } else if (buttonText === "X") {
       // add multiplication operand conversion
       entries.push(temp);
@@ -78,27 +78,30 @@ function calc(event) {
   // I will need to push the NaN buttonText to symbol
   // I will need to walk through what is happening in these functions to see if the appropriate tests are being run correctly
 
+  
   // set the result of the calculation
   var result = Number(entries[0]);
   for (let i = 0; i <= entries.length; i++) {
     var nextNum = Number(entries[i + 1]);
-    var symbol = entries[i];
 
     // test the symbol against the stored number to perform the calculation
-    // need to add other NaN buttons: . % 
-    if (symbol === "+") {
+    // need to add other NaN buttons: . %
+    if (buttonText === "+") {
       result += nextNum;
-    } else if (symbol === "-") {
+    } else if (buttonText === "-") {
       result -= nextNum;
-    } else if (symbol === "*") {
+    } else if (buttonText === "*") {
       result *= nextNum;
-    } else if (symbol === "/") {
+    } else if (buttonText === "/") {
       result /= nextNum;
     }
+  
 
     i++;
   }
+
 }
+
 
 //if the number is less than zero, turn result into an absolute number, and show that it's a negative number with '-'
 if (result < 0) {
@@ -109,7 +112,10 @@ if (result < 0) {
   entries.push(val);
   temp = "";
 }
+
+
 // push result to answer via val
 getElementById(answer).push(val(result));
 entries = [];
 temp = "";
+
