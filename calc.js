@@ -34,11 +34,11 @@ function calc(event) {
       entries = [];
       temp = "";
       total = 0;
-      document.getElementById("answer").val("");
+      document.getElementById("answer").innerText(""); // need to fix this
     } else if (buttonText === "CE") {
       // add Clear Entry functionality
       temp = "";
-      document.getElementById("answer").val("");
+      document.getElementById("answer").innerText(""); // need to fix this
     } else if (buttonText === "X") {
       // add multiplication operand conversion
       entries.push(temp);
@@ -72,9 +72,8 @@ function calc(event) {
     document.getElementById("answer").value = temp;
   }
 
-  // I will need to push the buttonText to symbol
+  // I will need to push the NaN buttonText to symbol
   // I will need to walk through what is happening in these functions to see if the appropriate tests are being run correctly
-
 
   // set the result of the calculation
   var result = Number(entries[0]);
@@ -83,6 +82,7 @@ function calc(event) {
     var symbol = entries[i];
 
     // test the symbol against the stored number to perform the calculation
+    // need to add other NaN buttons: . % 
     if (symbol === "+") {
       result += nextNum;
     } else if (symbol === "-") {
