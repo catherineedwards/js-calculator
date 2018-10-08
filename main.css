@@ -9,10 +9,13 @@ html {
   text-align: center;
   color: white;
   background-color: white;
-  border-radius: 15px;
   box-shadow: 0 9px #999999;
-  height: 800px;
-  width: 800px;
+  height: 600px;
+  width: 450px;
+  border-top-left-radius: 80%30px;
+  border-top-right-radius: 80%30px;
+  border-bottom-left-radius: 80%30px;
+  border-bottom-right-radius: 80%30px;
 }
 
 h1 {
@@ -29,17 +32,17 @@ p {
   background: #e4f6d4;
 }
 
-.button {
+
+button {
+  width: 40px;
+  height: 30px;
   cursor: pointer;
 }
 
 #plus {
   background: purple;
   color: white;
-  text-align: center;
-  height: 90px;
-  font-weight: bold;
-
+  height: 100px;
 }
 
 #minus {
@@ -63,4 +66,5 @@ p {
   background: #ff87ab;
   color: white;
   font-weight: bold;
+  margin-right: 6.75em;
 }
