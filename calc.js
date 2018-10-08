@@ -78,17 +78,38 @@ function calc(event) {
 
     if (entries[i] === "=") {
       var numbers = [];
+      var operands = [];
       var tempString = "";
-      for (let j = 0; j < i; j++){
+      for (let j = 0; j <= i; j++){
         if (!isNaN(parseFloat(entries[j])) || entries[j] === ".") {
           tempString += entries[j];
         } else {
           numbers.push(parseFloat(tempString));
+          operands.push(entries[j]);
           tempString = "";
         }
       }
-
-      
+      var tempAnswer = 0;
+      for (let k = 0; k < operands.length - 1; k++) {
+        if (operands[k] === "*") {
+          if (k < 1) {
+            tempAnswer = numbers[k] * numbers[k+1];
+          } else {
+            tempAnswer = tempAnswer * numbers[k+1];
+          }
+        } else if (operands[k] === "/") {
+          
+        } else if (operands[k] === "+") {
+          if (k < 1) {
+            tempAnswer = numbers[k] + numbers[k+1];
+          } else {
+            tempAnswer = tempAnswer + numbers[k+1];
+          }
+        } else if (operands[k] === "-") {
+        
+        }
+      }
+      newAnswer = tempAnswer;
     }
   }
   document.getElementById("answer").value = newAnswer;
