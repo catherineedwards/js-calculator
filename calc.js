@@ -23,69 +23,63 @@ window.onload = function() {
 
 var entries = [];
 var total = 0;
-var temp = "";
+var result = 0;
 
 function calc(event) {
   var buttonText = this.innerText;
   var val = parseFloat(buttonText);
+  console.log(entries);
+  console.log(total);
+  console.log(val);
+  console.log(result);
 
   if (isNaN(val)) {
     // test all non-number buttons
     if (buttonText === "AC") {
       // add All Clear functionality
-          entries = [];
-      temp = "";
+      entries = [];
       total = 0;
-      
-      document.getElementById("answer").value = temp;
+      document.getElementById("answer").value = "";
     } else if (buttonText === "CE") {
       // add Clear Entry functionality
-       temp = "";
-      document.getElementById("answer").value = temp;
+      while (entries.length > 0) {
+        var entry = entries.pop();
+        if (!Number.isInteger(entry) && entry !== ".") {
+          entries.push(entry);
+          break;
+        }
+      }
     } else if (buttonText === "X") {
       // add multiplication operand conversion
-      entries.push(temp);
       entries.push("*");
-      temp = "";
     } else if (buttonText === "÷") {
       // add division operand conversion
-      entries.push(temp);
       entries.push("/");
-      temp = "";
     } else if (buttonText === "+") {
-      entries.push(temp);
       entries.push("+");
-      temp = "";
+    } else if (buttonText === "-") {
+      entries.push("-");
     } else if (buttonText === ".") {
-      entries.push(temp);
       entries.push(".");
-      temp = "";
     } else if (buttonText === "=") {
-      entries.push(temp);
-      entries.push("=");
-      temp = "";
+      
     } else if (buttonText === "%") {
-      entries.push(temp);
       entries.push("%");
-      temp = "";
     }
   } else {
     // val is a number, add to answer text
-    temp += val;
-    document.getElementById("answer").value = temp;
+    entries.push(val);
   }
 
-  // I will need to push the NaN buttonText to symbol
-  // I will need to walk through what is happening in these functions to see if the appropriate tests are being run correctly
+  var newAnswer = "";
 
-  
-  // set the result of the calculation
-  var result = Number(entries[0]);
-  for (let i = 0; i <= entries.length; i++) {
+  for (let i = 0; i < entries.length; i++) {
+     newAnswer += entries[i];
+
+    var result = Number(entries[0]);
     var nextNum = Number(entries[i + 1]);
-
     // test the symbol against the stored number to perform the calculation
-    // need to add other NaN buttons: . %
+    // acknowledging that % and . do nothing for now
     if (buttonText === "+") {
       result += nextNum;
     } else if (buttonText === "-") {
@@ -95,27 +89,18 @@ function calc(event) {
     } else if (buttonText === "/") {
       result /= nextNum;
     }
-  
-
-    i++;
   }
 
+  document.getElementById("answer").value = newAnswer;
 }
-
-
 //if the number is less than zero, turn result into an absolute number, and show that it's a negative number with '-'
 if (result < 0) {
   result = Math.abs(result) + "-";
 } else {
   // if any a number button is pushed after the calculation
-  entries.push(temp);
   entries.push(val);
-  temp = "";
 }
 
-
 // push result to answer via val
-getElementById(answer).push(val(result));
+document.getElementById("answer").value = result;
 entries = [];
-temp = "";
-
