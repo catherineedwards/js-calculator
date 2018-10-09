@@ -73,24 +73,6 @@ function calc(event) {
         entries.push("=");
         break
     }
-
-    /* else if (buttonText === "X") {
-      // handling all of the operands
-      entries.push("*");
-    } else if (buttonText === "÷") {
-      entries.push("/");
-    } else if (buttonText === "+") {
-      entries.push("+");
-    } else if (buttonText === "-") {
-      entries.push("-");
-    } else if (buttonText === ".") {
-      entries.push(".");
-    } else if (buttonText === "=") {
-      entries.push("=");
-    } else if (buttonText === "%") {
-      entries.push("%");
-    } */
-  
   
   } else {
     // val is a number, add to answer text
