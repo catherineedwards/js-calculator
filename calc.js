@@ -41,6 +41,10 @@ function calc(event) {
       document.getElementById("answer").value = "";
     } else if (buttonText === "CE") {
       // add Clear Entry functionality
+      clearEntries();
+    }
+
+    function clearEntries() {
       while (entries.length > 0) {
         // remove the last entry from the entries array
         var entry = entries.pop();
@@ -52,28 +56,27 @@ function calc(event) {
         }
       }
     }
-  
+
     switch (buttonText) {
-      case "X": 
-        entries.push("*"); 
-        break
+      case "X":
+        entries.push("*");
+        break;
       case "÷":
         entries.push("/");
-        break
+        break;
       case "+":
         entries.push("+");
-        break
+        break;
       case "-":
         entries.push("-");
-        break
+        break;
       case ".":
         entries.push(".");
-        break
+        break;
       case "=":
         entries.push("=");
-        break
+        break;
     }
-  
   } else {
     // val is a number, add to answer text
     entries.push(parseFloat(buttonText));
