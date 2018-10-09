@@ -51,7 +51,30 @@ function calc(event) {
           break;
         }
       }
-    } else if (buttonText === "X") {
+    }
+  
+    switch (buttonText) {
+      case "X": 
+        entries.push("*"); 
+        break
+      case "÷":
+        entries.push("/");
+        break
+      case "+":
+        entries.push("+");
+        break
+      case "-":
+        entries.push("-");
+        break
+      case ".":
+        entries.push(".");
+        break
+      case "=":
+        entries.push("=");
+        break
+    }
+
+    /* else if (buttonText === "X") {
       // handling all of the operands
       entries.push("*");
     } else if (buttonText === "÷") {
@@ -66,7 +89,9 @@ function calc(event) {
       entries.push("=");
     } else if (buttonText === "%") {
       entries.push("%");
-    }
+    } */
+  
+  
   } else {
     // val is a number, add to answer text
     entries.push(parseFloat(buttonText));
