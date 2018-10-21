@@ -113,7 +113,16 @@ function calc(event) {
       }
       // create a tempAnswer where we will store our known calculations
       var tempAnswer = 0;
-      // check what operand is being used, and perform the operation based on operand
+
+      checkOperands(operands);
+
+      // initialise newAnswer as the output of tempAnswer
+      newAnswer = tempAnswer;
+      // store newAnswer in entries should the user want to continue calculations
+      entries = [newAnswer];
+    }
+    function checkOperands (operands) {
+            // check what operand is being used, and perform the operation based on operand
       // taking into account the presence of any operations completed prior
       for (let k = 0; k < operands.length - 1; k++) {
         if (operands[k] === "*") {
@@ -142,10 +151,7 @@ function calc(event) {
           }
         }
       }
-      // initialise newAnswer as the output of tempAnswer
-      newAnswer = tempAnswer;
-      // store newAnswer in entries should the user want to continue calculations
-      entries = [newAnswer];
+      return operands
     }
   }
   // push current answer to answer field on index page
