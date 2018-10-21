@@ -122,7 +122,7 @@ function calc(event) {
       entries = [newAnswer];
     }
     function checkOperands (operands) {
-            // check what operand is being used, and perform the operation based on operand
+      // check what operand is being used, and perform the operation based on operand
       // taking into account the presence of any operations completed prior
       for (let k = 0; k < operands.length - 1; k++) {
         if (operands[k] === "*") {
